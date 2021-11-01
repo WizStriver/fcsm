@@ -68,17 +68,20 @@ using namespace std;
 void nssm_exit(int);
 int str_equiv(const TCHAR *, const TCHAR *);
 int str_number(const TCHAR *, unsigned long *, TCHAR **);
+bool is_version(const TCHAR *);
 int str_number(const TCHAR *, unsigned long *);
 int quote(const TCHAR *, TCHAR *, size_t);
 void strip_basename(TCHAR *);
 int usage(int);
 void check_admin();
+int elevate(int, TCHAR **, unsigned long);
 int num_cpus();
 const TCHAR *nssm_unquoted_imagepath();
 const TCHAR *nssm_imagepath();
 const TCHAR *nssm_exe();
+void remember_path(TCHAR*);
 
-#define NSSM _T("NSSM")
+#define NSSM _T("FCSM")
 #ifdef _WIN64
 #define NSSM_ARCHITECTURE _T("64-bit")
 #else

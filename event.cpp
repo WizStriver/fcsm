@@ -1,4 +1,4 @@
-#include "nssm.h"
+#include "fcsm.h"
 
 #define NSSM_SOURCE _T("nssm")
 #define NSSM_ERROR_BUFSIZE 65535
@@ -29,7 +29,10 @@ TCHAR *message_string(unsigned long error) {
   if (! FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_HMODULE | FORMAT_MESSAGE_IGNORE_INSERTS, 0, error, GetUserDefaultLangID(), (LPTSTR) &ret, NSSM_ERROR_BUFSIZE, 0)) {
     if (! FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_HMODULE | FORMAT_MESSAGE_IGNORE_INSERTS, 0, error, 0, (LPTSTR) &ret, NSSM_ERROR_BUFSIZE, 0)) {
       ret = (TCHAR *) HeapAlloc(GetProcessHeap(), 0, 32 * sizeof(TCHAR));
-      if (_sntprintf_s(ret, NSSM_ERROR_BUFSIZE, _TRUNCATE, _T("system error %lu"), error) < 0) return 0;
+      TCHAR ret_arr[NSSM_ERROR_BUFSIZE];
+      if (_sntprintf_s(ret_arr, NSSM_ERROR_BUFSIZE, _TRUNCATE, _T("system error %lu"), error) < 0) return 0;
+      else
+          ret = ret_arr;
     }
   }
   return ret;

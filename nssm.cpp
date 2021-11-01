@@ -1,7 +1,7 @@
-#include "nssm.h"
+#include "fcsm.h"
 
-extern unsigned long tls_index;
 extern bool is_admin;
+
 extern imports_t imports;
 
 static TCHAR unquoted_imagepath[PATH_LENGTH];
@@ -33,7 +33,7 @@ int str_number(const TCHAR *string, unsigned long *number, TCHAR **bogus) {
 }
 
 /* User requested us to print our version. */
-static bool is_version(const TCHAR *s) {
+bool is_version(const TCHAR *s) {
   if (! s || ! *s) return false;
   /* /version */
   if (*s == '/') s++;
@@ -173,24 +173,24 @@ void strip_basename(TCHAR *buffer) {
 
 /* How to use me correctly */
 int usage(int ret) {
-  if ((! GetConsoleWindow() || ! GetStdHandle(STD_OUTPUT_HANDLE)) && GetProcessWindowStation()) popup_message(0, MB_OK, NSSM_MESSAGE_USAGE, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
-  else print_message(stderr, NSSM_MESSAGE_USAGE, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
+  /*if ((! GetConsoleWindow() || ! GetStdHandle(STD_OUTPUT_HANDLE)) && GetProcessWindowStation()) popup_message(0, MB_OK, NSSM_MESSAGE_USAGE, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
+  else print_message(stderr, NSSM_MESSAGE_USAGE, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);*/
+  print_message(stderr, NSSM_MESSAGE_USAGE, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
   return(ret);
 }
 
 void check_admin() {
-    cout << "good" << endl;
-  //is_admin = false;
+  is_admin = false;
 
-  ///* lifted from msdn examples */
-  //psid administratorsgroup;
-  //sid_identifier_authority ntauthority = security_nt_authority;
-  //if (! allocateandinitializesid(&ntauthority, 2, security_builtin_domain_rid, domain_alias_rid_admins, 0, 0, 0, 0, 0, 0, &administratorsgroup)) return;
-  //checktokenmembership(0, administratorsgroup, /*xxx*/(pbool) &is_admin);
-  //freesid(administratorsgroup);
+  /* Lifted from MSDN examples */
+  PSID AdministratorsGroup;
+  SID_IDENTIFIER_AUTHORITY NtAuthority = SECURITY_NT_AUTHORITY;
+  if (! AllocateAndInitializeSid(&NtAuthority, 2, SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0, 0, 0, 0, 0, 0, &AdministratorsGroup)) return;
+  CheckTokenMembership(0, AdministratorsGroup, /*XXX*/(PBOOL) &is_admin);
+  FreeSid(AdministratorsGroup);
 }
 
-static int elevate(int argc, TCHAR **argv, unsigned long message) {
+int elevate(int argc, TCHAR **argv, unsigned long message) {
   print_message(stderr, message);
 
   SHELLEXECUTEINFO sei;
@@ -238,4 +238,12 @@ const TCHAR *nssm_imagepath() {
 
 const TCHAR *nssm_exe() {
   return imageargv0;
+}
+
+void remember_path(TCHAR* path) {
+  _sntprintf_s(imageargv0, _countof(imageargv0), _TRUNCATE, _T("%s"), path);
+  PathQuoteSpaces(imageargv0);
+  GetModuleFileName(0, unquoted_imagepath, _countof(unquoted_imagepath));
+  GetModuleFileName(0, imagepath, _countof(imagepath));
+  PathQuoteSpaces(imagepath);
 }
