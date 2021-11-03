@@ -39,55 +39,55 @@
 //
 // MessageText:
 //
-// NSSM: The non-sucking service manager
+// FCSM: The Flexible-Configurable Service Manager
 // Version %s %s, %s
-// Usage: nssm <option> [<args> ...]
+// Usage: fcsm <option> [<args> ...]
 // 
-// To show service installation GUI:
+// To show service installation GUI [Discard]:
 // 
-//         nssm install [<servicename>]
+//         fcsm install [<servicename>]
 // 
 // To install a service without confirmation:
 // 
-//         nssm install <servicename> <app> [<args> ...]
+//         fcsm install <servicename> <app> [<args> ...]
 // 
-// To show service editing GUI:
+// To show service editing GUI [Discard]:
 // 
-//         nssm edit <servicename>
+//         fcsm edit <servicename>
 // 
 // To retrieve or edit service parameters directly:
 // 
-//         nssm dump <servicename>
+//         fcsm dump <servicename>
 // 
-//         nssm get <servicename> <parameter> [<subparameter>]
+//         fcsm get <servicename> <parameter> [<subparameter>]
 // 
-//         nssm set <servicename> <parameter> [<subparameter>] <value>
+//         fcsm set <servicename> <parameter> [<subparameter>] <value>
 // 
-//         nssm reset <servicename> <parameter> [<subparameter>]
+//         fcsm reset <servicename> <parameter> [<subparameter>]
 // 
-// To show service removal GUI:
+// To show service removal GUI [Discard]:
 // 
-//         nssm remove [<servicename>]
+//         fcsm remove [<servicename>]
 // 
 // To remove a service without confirmation:
 // 
-//         nssm remove <servicename> confirm
+//         fcsm remove <servicename> confirm
 // 
 // To manage a service:
 // 
-//         nssm start <servicename>
+//         fcsm start <servicename>
 // 
-//         nssm stop <servicename>
+//         fcsm stop <servicename>
 // 
-//         nssm restart <servicename>
+//         fcsm restart <servicename>
 // 
-//         nssm status <servicename>
+//         fcsm status <servicename>
 // 
-//         nssm statuscode <servicename>
+//         fcsm statuscode <servicename>
 // 
-//         nssm rotate <servicename>
+//         fcsm rotate <servicename>
 // 
-//         nssm processes <servicename>
+//         fcsm processes <servicename>
 //
 #define NSSM_MESSAGE_USAGE               0x400001F5L
 
@@ -123,7 +123,7 @@
 //
 // MessageText:
 //
-// To remove a service without confirmation: nssm remove <servicename> confirm
+// To remove a service without confirmation: fcsm remove <servicename> confirm
 //
 #define NSSM_MESSAGE_PRE_REMOVE_SERVICE  0x400001F9L
 
