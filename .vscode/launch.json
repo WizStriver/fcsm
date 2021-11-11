@@ -1,0 +1,20 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cl.exe - Build and debug active file",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\Debug\\${fileBasenameNoExtension}.exe",
+            "args": ["install XXLNginxServer D:\\.00WorkSpace\\Python-Server_cloudlearnV3\\Workspace\\nginx\\nginx.exe -p D:\\.00WorkSpace\\Python-Server_cloudlearnV3\\Workspace\\nginx"],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "console": "externalTerminal",
+            "preLaunchTask": "C/C++: cl.exe build active file"
+        }
+    ]
+}

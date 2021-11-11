@@ -36,6 +36,8 @@
 
 #define APSTUDIO_HIDDEN_SYMBOLS
 #include <windows.h>
+#pragma comment(lib,"Advapi32.lib")
+#pragma comment(lib,"User32.lib")
 #include <prsht.h>
 #undef APSTUDIO_HIDDEN_SYMBOLS
 #include <commctrl.h>
@@ -48,6 +50,9 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <iostream>
+#include <shellapi.h>
+#pragma comment(lib,"Shell32.lib")
+
 #include "utf8.h"
 #include "service.h"
 #include "account.h"

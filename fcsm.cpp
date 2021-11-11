@@ -5,6 +5,7 @@ extern bool is_admin;
 
 int main(int argc, TCHAR** argv)
 {
+    TCHAR* a = argv[1];
     if (check_console()) setup_utf8();
 
     /* Remember if we are admin */
