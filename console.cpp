@@ -21,7 +21,7 @@ bool check_console() {
   return false;
 }
 
-void alloc_console(nssm_service_t *service) {
+void alloc_console(fcsm_service_t *service) {
   if (service->no_console) return;
 
   AllocConsole();

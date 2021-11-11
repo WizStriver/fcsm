@@ -1,3 +1,3 @@
 # fcsm
 
-The Flexible-Configurable Service Manager, based on [nssm](https://github.com/kirillkovalenko/nssm).
+The Flexible-Configurable Service Manager, based on [fcsm](https://github.com/kirillkovalenko/fcsm).

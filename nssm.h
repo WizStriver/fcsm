@@ -40,7 +40,7 @@
 #undef APSTUDIO_HIDDEN_SYMBOLS
 #include <commctrl.h>
 #include <tchar.h>
-#ifndef NSSM_COMPILE_RC
+#ifndef FCSM_COMPILE_RC
 #include <fcntl.h>
 #include <io.h>
 #include <shlwapi.h>
@@ -65,7 +65,7 @@
 
 using namespace std;
 
-void nssm_exit(int);
+void fcsm_exit(int);
 int str_equiv(const TCHAR *, const TCHAR *);
 int str_number(const TCHAR *, unsigned long *, TCHAR **);
 bool is_version(const TCHAR *);
@@ -76,94 +76,94 @@ int usage(int);
 void check_admin();
 int elevate(int, TCHAR **, unsigned long);
 int num_cpus();
-const TCHAR *nssm_unquoted_imagepath();
-const TCHAR *nssm_imagepath();
-const TCHAR *nssm_exe();
+const TCHAR *fcsm_unquoted_imagepath();
+const TCHAR *fcsm_imagepath();
+const TCHAR *fcsm_exe();
 void remember_path(TCHAR*);
 
 #define FCSM _T("FCSM")
 #ifdef _WIN64
-#define NSSM_ARCHITECTURE _T("64-bit")
+#define FCSM_ARCHITECTURE _T("64-bit")
 #else
-#define NSSM_ARCHITECTURE _T("32-bit")
+#define FCSM_ARCHITECTURE _T("32-bit")
 #endif
 #ifdef _DEBUG
-#define NSSM_DEBUG _T(" debug")
+#define FCSM_DEBUG _T(" debug")
 #else
-#define NSSM_DEBUG _T("")
+#define FCSM_DEBUG _T("")
 #endif
-#define NSSM_CONFIGURATION NSSM_ARCHITECTURE NSSM_DEBUG
+#define FCSM_CONFIGURATION FCSM_ARCHITECTURE FCSM_DEBUG
 #include "version.h"
 
 /*
   Throttle the restart of the service if it stops before this many
   milliseconds have elapsed since startup.  Override in registry.
 */
-#define NSSM_RESET_THROTTLE_RESTART 1500
+#define FCSM_RESET_THROTTLE_RESTART 1500
 
 /*
   How many milliseconds to wait for the application to die after sending
   a Control-C event to its console.  Override in registry.
 */
-#define NSSM_KILL_CONSOLE_GRACE_PERIOD 1500
+#define FCSM_KILL_CONSOLE_GRACE_PERIOD 1500
 /*
   How many milliseconds to wait for the application to die after posting to
   its windows' message queues.  Override in registry.
 */
-#define NSSM_KILL_WINDOW_GRACE_PERIOD 1500
+#define FCSM_KILL_WINDOW_GRACE_PERIOD 1500
 /*
   How many milliseconds to wait for the application to die after posting to
   its threads' message queues.  Override in registry.
 */
-#define NSSM_KILL_THREADS_GRACE_PERIOD 1500
+#define FCSM_KILL_THREADS_GRACE_PERIOD 1500
 
 /* How many milliseconds to pause after rotating logs. */
-#define NSSM_ROTATE_DELAY 0
+#define FCSM_ROTATE_DELAY 0
 
 /* Margin of error for service status wait hints in milliseconds. */
-#define NSSM_WAITHINT_MARGIN 2000
+#define FCSM_WAITHINT_MARGIN 2000
 
 /* Methods used to try to stop the application. */
-#define NSSM_STOP_METHOD_CONSOLE (1 << 0)
-#define NSSM_STOP_METHOD_WINDOW (1 << 1)
-#define NSSM_STOP_METHOD_THREADS (1 << 2)
-#define NSSM_STOP_METHOD_TERMINATE (1 << 3)
+#define FCSM_STOP_METHOD_CONSOLE (1 << 0)
+#define FCSM_STOP_METHOD_WINDOW (1 << 1)
+#define FCSM_STOP_METHOD_THREADS (1 << 2)
+#define FCSM_STOP_METHOD_TERMINATE (1 << 3)
 
 /* Startup types. */
-#define NSSM_STARTUP_AUTOMATIC 0
-#define NSSM_STARTUP_DELAYED 1
-#define NSSM_STARTUP_MANUAL 2
-#define NSSM_STARTUP_DISABLED 3
+#define FCSM_STARTUP_AUTOMATIC 0
+#define FCSM_STARTUP_DELAYED 1
+#define FCSM_STARTUP_MANUAL 2
+#define FCSM_STARTUP_DISABLED 3
 
 /* Exit actions. */
-#define NSSM_EXIT_RESTART 0
-#define NSSM_EXIT_IGNORE 1
-#define NSSM_EXIT_REALLY 2
-#define NSSM_EXIT_UNCLEAN 3
-#define NSSM_NUM_EXIT_ACTIONS 4
+#define FCSM_EXIT_RESTART 0
+#define FCSM_EXIT_IGNORE 1
+#define FCSM_EXIT_REALLY 2
+#define FCSM_EXIT_UNCLEAN 3
+#define FCSM_NUM_EXIT_ACTIONS 4
 
 /* Process priority. */
-#define NSSM_REALTIME_PRIORITY 0
-#define NSSM_HIGH_PRIORITY 1
-#define NSSM_ABOVE_NORMAL_PRIORITY 2
-#define NSSM_NORMAL_PRIORITY 3
-#define NSSM_BELOW_NORMAL_PRIORITY 4
-#define NSSM_IDLE_PRIORITY 5
+#define FCSM_REALTIME_PRIORITY 0
+#define FCSM_HIGH_PRIORITY 1
+#define FCSM_ABOVE_NORMAL_PRIORITY 2
+#define FCSM_NORMAL_PRIORITY 3
+#define FCSM_BELOW_NORMAL_PRIORITY 4
+#define FCSM_IDLE_PRIORITY 5
 
 /* How many milliseconds to wait before updating service status. */
-#define NSSM_SERVICE_STATUS_DEADLINE 20000
+#define FCSM_SERVICE_STATUS_DEADLINE 20000
 
 /* User-defined service controls can be in the range 128-255. */
-#define NSSM_SERVICE_CONTROL_START 0
-#define NSSM_SERVICE_CONTROL_ROTATE 128
+#define FCSM_SERVICE_CONTROL_START 0
+#define FCSM_SERVICE_CONTROL_ROTATE 128
 
 /* How many milliseconds to wait for a hook. */
-#define NSSM_HOOK_DEADLINE 60000
+#define FCSM_HOOK_DEADLINE 60000
 
 /* How many milliseconds to wait for outstanding hooks. */
-#define NSSM_HOOK_THREAD_DEADLINE 80000
+#define FCSM_HOOK_THREAD_DEADLINE 80000
 
 /* How many milliseconds to wait for closing logging thread. */
-#define NSSM_CLEANUP_LOGGERS_DEADLINE 1500
+#define FCSM_CLEANUP_LOGGERS_DEADLINE 1500
 
 #endif

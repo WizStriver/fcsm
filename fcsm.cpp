@@ -11,7 +11,7 @@ int main(int argc, TCHAR** argv)
     check_admin();
 
     /* Set up function pointers. */
-    if (get_imports()) nssm_exit(111);
+    if (get_imports()) fcsm_exit(111);
     remember_path(argv[0]);
     /* Elevate */
     if (argc > 1) {
@@ -21,38 +21,38 @@ int main(int argc, TCHAR** argv)
           status, statuscode, rotate, list, processes, version
         */
         if (is_version(argv[1])) {
-            _tprintf(_T("%s %s %s %s\n"), FCSM, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
-            nssm_exit(0);
+            _tprintf(_T("%s %s %s %s\n"), FCSM, FCSM_VERSION, FCSM_CONFIGURATION, FCSM_DATE);
+            fcsm_exit(0);
         }
-        if (str_equiv(argv[1], _T("start"))) nssm_exit(control_service(NSSM_SERVICE_CONTROL_START, argc - 2, argv + 2));
-        if (str_equiv(argv[1], _T("stop"))) nssm_exit(control_service(SERVICE_CONTROL_STOP, argc - 2, argv + 2));
+        if (str_equiv(argv[1], _T("start"))) fcsm_exit(control_service(FCSM_SERVICE_CONTROL_START, argc - 2, argv + 2));
+        if (str_equiv(argv[1], _T("stop"))) fcsm_exit(control_service(SERVICE_CONTROL_STOP, argc - 2, argv + 2));
         if (str_equiv(argv[1], _T("restart"))) {
             int ret = control_service(SERVICE_CONTROL_STOP, argc - 2, argv + 2);
-            if (ret) nssm_exit(ret);
-            nssm_exit(control_service(NSSM_SERVICE_CONTROL_START, argc - 2, argv + 2));
+            if (ret) fcsm_exit(ret);
+            fcsm_exit(control_service(FCSM_SERVICE_CONTROL_START, argc - 2, argv + 2));
         }
-        if (str_equiv(argv[1], _T("pause"))) nssm_exit(control_service(SERVICE_CONTROL_PAUSE, argc - 2, argv + 2));
-        if (str_equiv(argv[1], _T("continue"))) nssm_exit(control_service(SERVICE_CONTROL_CONTINUE, argc - 2, argv + 2));
-        if (str_equiv(argv[1], _T("status"))) nssm_exit(control_service(SERVICE_CONTROL_INTERROGATE, argc - 2, argv + 2));
-        if (str_equiv(argv[1], _T("statuscode"))) nssm_exit(control_service(SERVICE_CONTROL_INTERROGATE, argc - 2, argv + 2, true));
-        if (str_equiv(argv[1], _T("rotate"))) nssm_exit(control_service(NSSM_SERVICE_CONTROL_ROTATE, argc - 2, argv + 2));
+        if (str_equiv(argv[1], _T("pause"))) fcsm_exit(control_service(SERVICE_CONTROL_PAUSE, argc - 2, argv + 2));
+        if (str_equiv(argv[1], _T("continue"))) fcsm_exit(control_service(SERVICE_CONTROL_CONTINUE, argc - 2, argv + 2));
+        if (str_equiv(argv[1], _T("status"))) fcsm_exit(control_service(SERVICE_CONTROL_INTERROGATE, argc - 2, argv + 2));
+        if (str_equiv(argv[1], _T("statuscode"))) fcsm_exit(control_service(SERVICE_CONTROL_INTERROGATE, argc - 2, argv + 2, true));
+        if (str_equiv(argv[1], _T("rotate"))) fcsm_exit(control_service(FCSM_SERVICE_CONTROL_ROTATE, argc - 2, argv + 2));
             if (str_equiv(argv[1], _T("install"))) {
-            if (!is_admin) nssm_exit(elevate(argc, argv, NSSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_INSTALL));
+            if (!is_admin) fcsm_exit(elevate(argc, argv, FCSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_INSTALL));
             create_messages();
-            nssm_exit(pre_install_service(argc - 2, argv + 2));
+            fcsm_exit(pre_install_service(argc - 2, argv + 2));
         }
         if (str_equiv(argv[1], _T("edit")) || str_equiv(argv[1], _T("get")) || str_equiv(argv[1], _T("set")) || str_equiv(argv[1], _T("reset")) || str_equiv(argv[1], _T("unset")) || str_equiv(argv[1], _T("dump"))) {
             int ret = pre_edit_service(argc - 1, argv + 1);
-            if (ret == 3 && !is_admin && argc == 3) nssm_exit(elevate(argc, argv, NSSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_EDIT));
+            if (ret == 3 && !is_admin && argc == 3) fcsm_exit(elevate(argc, argv, FCSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_EDIT));
             /* There might be a password here. */
             for (int i = 0; i < argc; i++) SecureZeroMemory(argv[i], _tcslen(argv[i]) * sizeof(TCHAR));
-            nssm_exit(ret);
+            fcsm_exit(ret);
         }
-        if (str_equiv(argv[1], _T("list"))) nssm_exit(list_nssm_services(argc - 2, argv + 2));
-        if (str_equiv(argv[1], _T("processes"))) nssm_exit(service_process_tree(argc - 2, argv + 2));
+        if (str_equiv(argv[1], _T("list"))) fcsm_exit(list_fcsm_services(argc - 2, argv + 2));
+        if (str_equiv(argv[1], _T("processes"))) fcsm_exit(service_process_tree(argc - 2, argv + 2));
         if (str_equiv(argv[1], _T("remove"))) {
-            if (!is_admin) nssm_exit(elevate(argc, argv, NSSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_REMOVE));
-            nssm_exit(pre_remove_service(argc - 2, argv + 2));
+            if (!is_admin) fcsm_exit(elevate(argc, argv, FCSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_REMOVE));
+            fcsm_exit(pre_remove_service(argc - 2, argv + 2));
         }
     }
 
@@ -76,15 +76,15 @@ int main(int argc, TCHAR** argv)
         SERVICE_TABLE_ENTRY table[] = { { FCSM, service_main }, { 0, 0 } };
         if (!StartServiceCtrlDispatcher(table)) {
             unsigned long error = GetLastError();
-            /* User probably ran nssm with no argument */
-            if (error == ERROR_FAILED_SERVICE_CONTROLLER_CONNECT) nssm_exit(usage(1));
-            log_event(EVENTLOG_ERROR_TYPE, NSSM_EVENT_DISPATCHER_FAILED, error_string(error), 0);
-            nssm_exit(100);
+            /* User probably ran fcsm with no argument */
+            if (error == ERROR_FAILED_SERVICE_CONTROLLER_CONNECT) fcsm_exit(usage(1));
+            log_event(EVENTLOG_ERROR_TYPE, FCSM_EVENT_DISPATCHER_FAILED, error_string(error), 0);
+            fcsm_exit(100);
         }
     }
     else {
-        nssm_exit(usage(1));
+        fcsm_exit(usage(1));
     }
     /* And nothing more to do */
-    nssm_exit(0);
+    fcsm_exit(0);
 }

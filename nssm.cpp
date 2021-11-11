@@ -8,7 +8,7 @@ static TCHAR unquoted_imagepath[PATH_LENGTH];
 static TCHAR imagepath[PATH_LENGTH];
 static TCHAR imageargv0[PATH_LENGTH];
 
-void nssm_exit(int status) {
+void fcsm_exit(int status) {
   free_imports();
   unsetup_utf8();
   exit(status);
@@ -173,9 +173,9 @@ void strip_basename(TCHAR *buffer) {
 
 /* How to use me correctly */
 int usage(int ret) {
-  /*if ((! GetConsoleWindow() || ! GetStdHandle(STD_OUTPUT_HANDLE)) && GetProcessWindowStation()) popup_message(0, MB_OK, NSSM_MESSAGE_USAGE, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
-  else print_message(stderr, NSSM_MESSAGE_USAGE, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);*/
-  print_message(stderr, NSSM_MESSAGE_USAGE, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
+  /*if ((! GetConsoleWindow() || ! GetStdHandle(STD_OUTPUT_HANDLE)) && GetProcessWindowStation()) popup_message(0, MB_OK, FCSM_MESSAGE_USAGE, FCSM_VERSION, FCSM_CONFIGURATION, FCSM_DATE);
+  else print_message(stderr, FCSM_MESSAGE_USAGE, FCSM_VERSION, FCSM_CONFIGURATION, FCSM_DATE);*/
+  print_message(stderr, FCSM_MESSAGE_USAGE, FCSM_VERSION, FCSM_CONFIGURATION, FCSM_DATE);
   return(ret);
 }
 
@@ -197,15 +197,15 @@ int elevate(int argc, TCHAR **argv, unsigned long message) {
   ZeroMemory(&sei, sizeof(sei));
   sei.cbSize = sizeof(sei);
   sei.lpVerb = _T("runas");
-  sei.lpFile = (TCHAR *) nssm_imagepath();
+  sei.lpFile = (TCHAR *) fcsm_imagepath();
 
   TCHAR *args = (TCHAR *) HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, EXE_LENGTH * sizeof(TCHAR));
   if (! args) {
-    print_message(stderr, NSSM_MESSAGE_OUT_OF_MEMORY, _T("GetCommandLine()"), _T("elevate()"));
+    print_message(stderr, FCSM_MESSAGE_OUT_OF_MEMORY, _T("GetCommandLine()"), _T("elevate()"));
     return 111;
   }
 
-  /* Get command line, which includes the path to NSSM, and skip that part. */
+  /* Get command line, which includes the path to FCSM, and skip that part. */
   _sntprintf_s(args, EXE_LENGTH, _TRUNCATE, _T("%s"), GetCommandLine());
   size_t s = _tcslen(argv[0]) + 1;
   if (args[0] == _T('"')) s += 2;
@@ -228,15 +228,15 @@ int num_cpus() {
   return (int) i;
 }
 
-const TCHAR *nssm_unquoted_imagepath() {
+const TCHAR *fcsm_unquoted_imagepath() {
   return unquoted_imagepath;
 }
 
-const TCHAR *nssm_imagepath() {
+const TCHAR *fcsm_imagepath() {
   return imagepath;
 }
 
-const TCHAR *nssm_exe() {
+const TCHAR *fcsm_exe() {
   return imageargv0;
 }
 
