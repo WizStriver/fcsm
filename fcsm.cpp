@@ -3,22 +3,6 @@
 extern unsigned long tls_index;
 extern bool is_admin;
 
-static TCHAR unquoted_imagepath[PATH_LENGTH];
-static TCHAR imagepath[PATH_LENGTH];
-static TCHAR imageargv0[PATH_LENGTH];
-
-const TCHAR* fcsm_unquoted_imagepath() {
-    return unquoted_imagepath;
-}
-
-const TCHAR* fcsm_imagepath() {
-    return imagepath;
-}
-
-const TCHAR* fcsm_exe() {
-    return imageargv0;
-}
-
 int main(int argc, TCHAR** argv)
 {
     if (check_console()) setup_utf8();
@@ -28,7 +12,6 @@ int main(int argc, TCHAR** argv)
 
     /* Set up function pointers. */
     if (get_imports()) nssm_exit(111);
-
     remember_path(argv[0]);
     /* Elevate */
     if (argc > 1) {
@@ -38,7 +21,7 @@ int main(int argc, TCHAR** argv)
           status, statuscode, rotate, list, processes, version
         */
         if (is_version(argv[1])) {
-            _tprintf(_T("%s %s %s %s\n"), NSSM, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
+            _tprintf(_T("%s %s %s %s\n"), FCSM, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
             nssm_exit(0);
         }
         if (str_equiv(argv[1], _T("start"))) nssm_exit(control_service(NSSM_SERVICE_CONTROL_START, argc - 2, argv + 2));
@@ -53,7 +36,7 @@ int main(int argc, TCHAR** argv)
         if (str_equiv(argv[1], _T("status"))) nssm_exit(control_service(SERVICE_CONTROL_INTERROGATE, argc - 2, argv + 2));
         if (str_equiv(argv[1], _T("statuscode"))) nssm_exit(control_service(SERVICE_CONTROL_INTERROGATE, argc - 2, argv + 2, true));
         if (str_equiv(argv[1], _T("rotate"))) nssm_exit(control_service(NSSM_SERVICE_CONTROL_ROTATE, argc - 2, argv + 2));
-        if (str_equiv(argv[1], _T("install"))) {
+            if (str_equiv(argv[1], _T("install"))) {
             if (!is_admin) nssm_exit(elevate(argc, argv, NSSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_INSTALL));
             create_messages();
             nssm_exit(pre_install_service(argc - 2, argv + 2));
@@ -75,7 +58,6 @@ int main(int argc, TCHAR** argv)
 
     /* Thread local storage for error message buffer */
     tls_index = TlsAlloc();
-
     /* Register messages */
     if (is_admin) create_messages();
 
@@ -91,7 +73,7 @@ int main(int argc, TCHAR** argv)
     */
     if (!GetStdHandle(STD_INPUT_HANDLE)) {
         /* Start service magic */
-        SERVICE_TABLE_ENTRY table[] = { { NSSM, service_main }, { 0, 0 } };
+        SERVICE_TABLE_ENTRY table[] = { { FCSM, service_main }, { 0, 0 } };
         if (!StartServiceCtrlDispatcher(table)) {
             unsigned long error = GetLastError();
             /* User probably ran nssm with no argument */
@@ -100,8 +82,9 @@ int main(int argc, TCHAR** argv)
             nssm_exit(100);
         }
     }
-    else nssm_exit(usage(1));
-
+    else {
+        nssm_exit(usage(1));
+    }
     /* And nothing more to do */
     nssm_exit(0);
 }

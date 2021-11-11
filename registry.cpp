@@ -46,7 +46,7 @@ int create_messages() {
   HKEY key;
 
   TCHAR registry[KEY_LENGTH];
-  if (_sntprintf_s(registry, _countof(registry), _TRUNCATE, _T("SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application\\%s"), NSSM) < 0) {
+  if (_sntprintf_s(registry, _countof(registry), _TRUNCATE, _T("SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application\\%s"), FCSM) < 0) {
     log_event(EVENTLOG_ERROR_TYPE, NSSM_EVENT_OUT_OF_MEMORY, _T("eventlog registry"), _T("create_messages()"), 0);
     return 1;
   }
@@ -880,7 +880,7 @@ int get_parameters(nssm_service_t *service, STARTUPINFO *si) {
   if (ret != ERROR_SUCCESS) {
     if (ret != ERROR_FILE_NOT_FOUND) {
       if (type != REG_DWORD) {
-        log_event(EVENTLOG_WARNING_TYPE, NSSM_EVENT_BOGUS_STOP_METHOD_SKIP, service->name, NSSM_REG_STOP_METHOD_SKIP, NSSM, 0);
+        log_event(EVENTLOG_WARNING_TYPE, NSSM_EVENT_BOGUS_STOP_METHOD_SKIP, service->name, NSSM_REG_STOP_METHOD_SKIP, FCSM, 0);
       }
       else log_event(EVENTLOG_ERROR_TYPE, NSSM_EVENT_QUERYVALUE_FAILED, NSSM_REG_STOP_METHOD_SKIP, error_string(ret), 0);
     }

@@ -81,7 +81,7 @@ int popup_message(HWND owner, unsigned int type, unsigned long id, ...) {
 
   TCHAR *format = message_string(id);
   if (! format) {
-    return MessageBox(0, _T("The message which was supposed to go here is missing!"), NSSM, MB_OK | MB_ICONEXCLAMATION);
+    return MessageBox(0, _T("The message which was supposed to go here is missing!"), FCSM, MB_OK | MB_ICONEXCLAMATION);
   }
 
   TCHAR blurb[NSSM_ERROR_BUFSIZE];
@@ -89,7 +89,7 @@ int popup_message(HWND owner, unsigned int type, unsigned long id, ...) {
   if (_vsntprintf_s(blurb, _countof(blurb), _TRUNCATE, format, arg) < 0) {
     va_end(arg);
     LocalFree(format);
-    return MessageBox(0, _T("The message which was supposed to go here is too big!"), NSSM, MB_OK | MB_ICONEXCLAMATION);
+    return MessageBox(0, _T("The message which was supposed to go here is too big!"), FCSM, MB_OK | MB_ICONEXCLAMATION);
   }
   va_end(arg);
 
@@ -99,7 +99,7 @@ int popup_message(HWND owner, unsigned int type, unsigned long id, ...) {
   params.hInstance = GetModuleHandle(0);
   params.hwndOwner = owner;
   params.lpszText = blurb;
-  params.lpszCaption = NSSM;
+  params.lpszCaption = FCSM;
   params.dwStyle = type;
   if (type == MB_OK) {
     params.dwStyle |= MB_USERICON;

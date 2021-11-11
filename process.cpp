@@ -341,7 +341,7 @@ void walk_process_tree(nssm_service_t *service, walk_function_t fn, kill_t *k, u
       unsigned long ret;
       if (! GetExitCodeProcess(process_handle, &ret) || ret == STILL_ACTIVE) {
         if (k->stop_method & NSSM_STOP_METHOD_TERMINATE) log_event(EVENTLOG_ERROR_TYPE, NSSM_EVENT_TERMINATEPROCESS_FAILED, pid_string, k->name, error_string(GetLastError()), 0);
-        else log_event(EVENTLOG_WARNING_TYPE, NSSM_EVENT_PROCESS_STILL_ACTIVE, k->name, pid_string, NSSM, NSSM_REG_STOP_METHOD_SKIP, 0);
+        else log_event(EVENTLOG_WARNING_TYPE, NSSM_EVENT_PROCESS_STILL_ACTIVE, k->name, pid_string, FCSM, NSSM_REG_STOP_METHOD_SKIP, 0);
       }
     }
 

@@ -81,7 +81,7 @@ const TCHAR *nssm_imagepath();
 const TCHAR *nssm_exe();
 void remember_path(TCHAR*);
 
-#define NSSM _T("FCSM")
+#define FCSM _T("FCSM")
 #ifdef _WIN64
 #define NSSM_ARCHITECTURE _T("64-bit")
 #else
