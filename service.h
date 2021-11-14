@@ -14,6 +14,7 @@
 #define KEY_LENGTH 255
 #define VALUE_LENGTH 16383
 #define SERVICE_NAME_LENGTH 256
+#define MAX_SERVICE_COUNT 10
 
 #define ACTION_LEN 16
 
@@ -151,6 +152,7 @@ int get_service_username(const TCHAR *, const QUERY_SERVICE_CONFIG *, TCHAR **, 
 void set_service_environment(fcsm_service_t *);
 void unset_service_environment(fcsm_service_t *);
 int pre_install_service(int, TCHAR **);
+int pre_install_multiple_service(int, TCHAR **);
 int pre_remove_service(int, TCHAR **);
 int pre_edit_service(int, TCHAR **);
 int install_service(fcsm_service_t *);

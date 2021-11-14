@@ -884,6 +884,33 @@ int pre_install_service(int argc, TCHAR** argv) {
 	return ret;
 }
 
+/* About to install multiple service */
+int pre_install_multiple_service(int argc, TCHAR** argv) {
+	 TCHAR** argvs[MAX_SERVICE_COUNT];
+	 int i;
+	 int j = 1;
+	 argvs[0] = &argv[0];
+	 for(i = 1; i < argc; i++) {
+	 	 if(str_equiv(argv[i], _T(",")) && i != argc - 1) {
+			if (j >= MAX_SERVICE_COUNT) {
+				print_message(stderr, FCSM_SERVICE_COUNT_OVER_FIVE);
+				break;
+			}
+			argvs[j++] = &argv[i+1];
+	 	}
+	 }
+
+	int c = 0;
+	for(i = 0; i < j; i++)
+		if(pre_install_service(sizeof(argvs[i]), argvs[i]) == 0) c++;
+
+	if(!c) {
+		print_message(stderr, FCSM_MULTIPLE_SERVICE_INSTALL_FAILED);
+		return 1;
+	}
+	return 0;
+}
+
 /* About to edit the service. */
 int pre_edit_service(int argc, TCHAR** argv) {
 	/* Require service name. */
@@ -1543,9 +1570,10 @@ int remove_service(fcsm_service_t* service) {
 	return 0;
 }
 
+string s;
 /* Service initialisation */
 void WINAPI service_main(unsigned long argc, TCHAR** argv) {
-
+	log_argv(argc, argv);
 	fcsm_service_t* service = alloc_fcsm_service();
 	if (!service) return;
 

@@ -3,9 +3,20 @@
 extern unsigned long tls_index;
 extern bool is_admin;
 
+void log_message(ostream &os, TCHAR* str)
+{
+    os << str;
+    os << endl;
+}
+
+void log_argv(int argc, TCHAR** argv)
+{
+    for (int i = 0; i < argc; ++i)
+        log_message(FCSM_DEFAULT_OFSTREAM, argv[i]);
+}
+
 int main(int argc, TCHAR** argv)
 {
-    TCHAR* a = argv[1];
     if (check_console()) setup_utf8();
 
     /* Remember if we are admin */
@@ -37,10 +48,13 @@ int main(int argc, TCHAR** argv)
         if (str_equiv(argv[1], _T("status"))) fcsm_exit(control_service(SERVICE_CONTROL_INTERROGATE, argc - 2, argv + 2));
         if (str_equiv(argv[1], _T("statuscode"))) fcsm_exit(control_service(SERVICE_CONTROL_INTERROGATE, argc - 2, argv + 2, true));
         if (str_equiv(argv[1], _T("rotate"))) fcsm_exit(control_service(FCSM_SERVICE_CONTROL_ROTATE, argc - 2, argv + 2));
-            if (str_equiv(argv[1], _T("install"))) {
+        if (str_equiv(argv[1], _T("install"))) {
             if (!is_admin) fcsm_exit(elevate(argc, argv, FCSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_INSTALL));
             create_messages();
-            fcsm_exit(pre_install_service(argc - 2, argv + 2));
+            if (argc > 2 && str_equiv(argv[2], _T("-m")))
+                fcsm_exit(pre_install_multiple_service(argc - 3, argv + 3));
+            else
+                fcsm_exit(pre_install_service(argc - 2, argv + 2));
         }
         if (str_equiv(argv[1], _T("edit")) || str_equiv(argv[1], _T("get")) || str_equiv(argv[1], _T("set")) || str_equiv(argv[1], _T("reset")) || str_equiv(argv[1], _T("unset")) || str_equiv(argv[1], _T("dump"))) {
             int ret = pre_edit_service(argc - 1, argv + 1);
