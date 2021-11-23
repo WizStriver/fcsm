@@ -11,8 +11,11 @@ void log_message(ostream &os, TCHAR* str)
 
 void log_argv(int argc, TCHAR** argv)
 {
-    for (int i = 0; i < argc; ++i)
-        log_message(FCSM_DEFAULT_OFSTREAM, argv[i]);
+    for (int i = 0; i < argc; ++i) {
+        ofstream log_file(FCSM_LOG_FILE, ios_base::app);
+        log_message(log_file, argv[i]);
+        log_file.close();
+    }
 }
 
 int main(int argc, TCHAR** argv)
@@ -59,8 +62,8 @@ int main(int argc, TCHAR** argv)
         if (argc > 2 && str_equiv(argv[1], _T("-c"))) {
             if (!is_admin) fcsm_exit(elevate(argc, argv, FCSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_INSTALL));
             create_messages();
-            if(str_equiv(argv[2], _T("template"))) fcsm_exit(create_service_conf_template(argv + 2));
-            else fcsm_exit(pre_install_conf_service(argv + 2));
+            if(str_equiv(argv[2], _T("template"))) fcsm_exit(create_service_conf_template());
+            else fcsm_exit(pre_install_conf_service(argv[2]));
         }
         if (argc > 2 && str_equiv(argv[1], _T("-t"))) {
             if (!is_admin) fcsm_exit(elevate(argc, argv, FCSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_INSTALL));
@@ -109,7 +112,12 @@ int main(int argc, TCHAR** argv)
         }
     }
     else {
-        fcsm_exit(usage(1));
+        if(check_default_conf_file()) {
+            if (!is_admin) fcsm_exit(elevate(argc, argv, FCSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_INSTALL));
+            create_messages();
+            fcsm_exit(pre_install_conf_service(FCSM_CONF_FILE));
+        }
+        else fcsm_exit(usage(1));
     }
     /* And nothing more to do */
     fcsm_exit(0);

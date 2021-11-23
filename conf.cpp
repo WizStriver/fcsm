@@ -34,7 +34,7 @@ int parse_conf_syntax(const TCHAR* conf)
     return ret;
 }
 
-Json::Value parse_conf(const TCHAR* conf, int& ret)
+Json::Value parse_conf(const TCHAR * conf, int& ret)
 {
     Json::Value root;
     Json::Reader reader;

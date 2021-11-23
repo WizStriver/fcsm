@@ -912,9 +912,9 @@ int pre_install_multiple_service(int argc, TCHAR** argv) {
 }
 
 /* About to install service with config file */
-int pre_install_conf_service(TCHAR ** argv) {
+int pre_install_conf_service(TCHAR* conf) {
 	int ret = 0;
-	const Json::Value services = parse_conf(argv[0], ret);
+	const Json::Value services = parse_conf(conf, ret);
 	if (ret != 0) return ret;
 	ConfService* conf_s_list = new ConfService[services.size()];
 	get_conf_service_list(conf_s_list, services);
@@ -950,12 +950,23 @@ int pre_install_conf_service(TCHAR ** argv) {
 	return 0;
 }
 
-int create_service_conf_template(TCHAR ** argv) {
+int create_service_conf_template() {
 	TCHAR *format = message_string(FCSM_SERVICE_CONF_TEMPLATE);
 	if (! format) return 1;
-	log_message(FCSM_CONF_TEMPLATE_OFSTREAM, format);
+	ofstream conf_file(FCSM_CONF_FILE, ios_base::out);
+	log_message(conf_file, format);
+	conf_file.close();
 	LocalFree(format);
 	return 0;
+}
+
+bool check_default_conf_file() {
+	ifstream conf_file(FCSM_CONF_FILE);
+	if(!conf_file) return false;
+	else {
+		conf_file.close();
+		return true;
+	}
 }
 
 /* About to edit the service. */
