@@ -14,6 +14,7 @@ public:
     string flags;
     string description;
 };
+int parse_conf_syntax(const TCHAR*);
 Json::Value parse_conf(const TCHAR*, int&);
 void get_conf_service_list(ConfService*, Json::Value);
 

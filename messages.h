@@ -258,13 +258,22 @@
 #define FCSM_CONF_SERVICE_INSTALL_FAILED 0x40000205L
 
 //
+// MessageId: FCSM_CONF_FILE_NOT_EXIST
+//
+// MessageText:
+//
+// %s does not exist, or inadequate permissions!
+//
+#define FCSM_CONF_FILE_NOT_EXIST         0x40000206L
+
+//
 // MessageId: SERVICES_KEY_IS_REQUIRED_IN_CONF
 //
 // MessageText:
 //
 // "services" key is required in config file!
 //
-#define SERVICES_KEY_IS_REQUIRED_IN_CONF 0x40000206L
+#define SERVICES_KEY_IS_REQUIRED_IN_CONF 0x40000207L
 
 //
 // MessageId: SERVICES_KEY_IS_EMPTY_IN_CONF
@@ -273,7 +282,25 @@
 //
 // "services" key is empty in config file!
 //
-#define SERVICES_KEY_IS_EMPTY_IN_CONF    0x40000207L
+#define SERVICES_KEY_IS_EMPTY_IN_CONF    0x40000208L
+
+//
+// MessageId: FCSM_CONF_FILE_TEST_SUCCEED
+//
+// MessageText:
+//
+// Fcsm config file test succeed!
+//
+#define FCSM_CONF_FILE_TEST_SUCCEED      0x40000209L
+
+//
+// MessageId: FCSM_CONF_FILE_TEST_FAILED
+//
+// MessageText:
+//
+// Fcsm config file test failed!
+//
+#define FCSM_CONF_FILE_TEST_FAILED       0x4000020AL
 
 //
 // MessageId: FCSM_MESSAGE_OUT_OF_MEMORY_FOR_IMAGEPATH
@@ -282,7 +309,7 @@
 //
 // Out of memory for ImagePath!
 //
-#define FCSM_MESSAGE_OUT_OF_MEMORY_FOR_IMAGEPATH 0x40000208L
+#define FCSM_MESSAGE_OUT_OF_MEMORY_FOR_IMAGEPATH 0x4000020BL
 
 //
 // MessageId: FCSM_MESSAGE_CREATESERVICE_FAILED
@@ -292,7 +319,7 @@
 // Error creating service!
 // CreateService(): %s
 //
-#define FCSM_MESSAGE_CREATESERVICE_FAILED 0x40000209L
+#define FCSM_MESSAGE_CREATESERVICE_FAILED 0x4000020CL
 
 //
 // MessageId: FCSM_MESSAGE_GRANTED_LOGON_AS_SERVICE
@@ -301,7 +328,7 @@
 //
 // The "Log on as a service" right was granted to account %s.
 //
-#define FCSM_MESSAGE_GRANTED_LOGON_AS_SERVICE 0x4000020AL
+#define FCSM_MESSAGE_GRANTED_LOGON_AS_SERVICE 0x4000020DL
 
 //
 // MessageId: FCSM_MESSAGE_GRANT_LOGON_AS_SERVICE_FAILED
@@ -310,7 +337,7 @@
 //
 // Failed to grant the "Log on as a service" right to account %s!
 //
-#define FCSM_MESSAGE_GRANT_LOGON_AS_SERVICE_FAILED 0x4000020BL
+#define FCSM_MESSAGE_GRANT_LOGON_AS_SERVICE_FAILED 0x4000020EL
 
 //
 // MessageId: FCSM_MESSAGE_LSAOPENPOLICY_FAILED
@@ -319,7 +346,7 @@
 //
 // LsaOpenPolicy(): %s
 //
-#define FCSM_MESSAGE_LSAOPENPOLICY_FAILED 0x4000020CL
+#define FCSM_MESSAGE_LSAOPENPOLICY_FAILED 0x4000020FL
 
 //
 // MessageId: FCSM_MESSAGE_LSALOOKUPNAMES_FAILED
@@ -329,7 +356,7 @@
 // Failed to look up the SID for username %s!
 // LsaLookupNames(): %s
 //
-#define FCSM_MESSAGE_LSALOOKUPNAMES_FAILED 0x4000020DL
+#define FCSM_MESSAGE_LSALOOKUPNAMES_FAILED 0x40000210L
 
 //
 // MessageId: FCSM_MESSAGE_INITIALIZESID_FAILED
@@ -339,7 +366,7 @@
 // Failed to initialise the SID for username %s!
 // InitializeSid(): %s
 //
-#define FCSM_MESSAGE_INITIALIZESID_FAILED 0x4000020EL
+#define FCSM_MESSAGE_INITIALIZESID_FAILED 0x40000211L
 
 //
 // MessageId: FCSM_MESSAGE_LSAENUMERATEACCOUNTRIGHTS_FAILED
@@ -349,7 +376,7 @@
 // Failed to check if %s has the "Log on as a service" right!
 // LsaEnumerateAccountRights(): %s
 //
-#define FCSM_MESSAGE_LSAENUMERATEACCOUNTRIGHTS_FAILED 0x4000020FL
+#define FCSM_MESSAGE_LSAENUMERATEACCOUNTRIGHTS_FAILED 0x40000212L
 
 //
 // MessageId: FCSM_MESSAGE_LSAADDACCOUNTRIGHTS_FAILED
@@ -358,7 +385,7 @@
 //
 // LsaAddAccountRights(): %s
 //
-#define FCSM_MESSAGE_LSAADDACCOUNTRIGHTS_FAILED 0x40000210L
+#define FCSM_MESSAGE_LSAADDACCOUNTRIGHTS_FAILED 0x40000213L
 
 //
 // MessageId: FCSM_MESSAGE_CHANGESERVICECONFIG_FAILED
@@ -368,7 +395,7 @@
 // Error editing service!
 // ChangeServiceConfig(): %s
 //
-#define FCSM_MESSAGE_CHANGESERVICECONFIG_FAILED 0x40000211L
+#define FCSM_MESSAGE_CHANGESERVICECONFIG_FAILED 0x40000214L
 
 //
 // MessageId: FCSM_MESSAGE_SETVALUE_FAILED
@@ -378,7 +405,7 @@
 // Failed to write registry value %s:
 // RegSetValueEx(): %s
 //
-#define FCSM_MESSAGE_SETVALUE_FAILED     0xC0000212L
+#define FCSM_MESSAGE_SETVALUE_FAILED     0xC0000215L
 
 //
 // MessageId: FCSM_MESSAGE_REGDELETEVALUE_FAILED
@@ -388,7 +415,7 @@
 // Error deleting registry value %s for service "%s"!
 // RegDeleteValue(): %s
 //
-#define FCSM_MESSAGE_REGDELETEVALUE_FAILED 0x40000213L
+#define FCSM_MESSAGE_REGDELETEVALUE_FAILED 0x40000216L
 
 //
 // MessageId: FCSM_MESSAGE_INVALID_PARAMETER
@@ -397,7 +424,7 @@
 //
 // Invalid parameter "%s".  Valid parameters are:
 //
-#define FCSM_MESSAGE_INVALID_PARAMETER   0x40000214L
+#define FCSM_MESSAGE_INVALID_PARAMETER   0x40000217L
 
 //
 // MessageId: FCSM_MESSAGE_MISSING_SUBPARAMETER
@@ -406,7 +433,7 @@
 //
 // Parameter "%s" requires a subparameter!
 //
-#define FCSM_MESSAGE_MISSING_SUBPARAMETER 0x40000215L
+#define FCSM_MESSAGE_MISSING_SUBPARAMETER 0x40000218L
 
 //
 // MessageId: FCSM_MESSAGE_NATIVE_PARAMETER
@@ -415,7 +442,7 @@
 //
 // Parameter "%s" is only valid for services managed by %s!
 //
-#define FCSM_MESSAGE_NATIVE_PARAMETER    0x40000216L
+#define FCSM_MESSAGE_NATIVE_PARAMETER    0x40000219L
 
 //
 // MessageId: FCSM_MESSAGE_NO_DEFAULT_VALUE
@@ -424,7 +451,7 @@
 //
 // Parameter "%s" has no meaningful default value!
 //
-#define FCSM_MESSAGE_NO_DEFAULT_VALUE    0x40000217L
+#define FCSM_MESSAGE_NO_DEFAULT_VALUE    0x4000021AL
 
 //
 // MessageId: FCSM_MESSAGE_GET_SETTING_FAILED
@@ -433,7 +460,7 @@
 //
 // Error getting parameter "%s" for service "%s"!
 //
-#define FCSM_MESSAGE_GET_SETTING_FAILED  0x40000218L
+#define FCSM_MESSAGE_GET_SETTING_FAILED  0x4000021BL
 
 //
 // MessageId: FCSM_MESSAGE_SET_SETTING_FAILED
@@ -442,7 +469,7 @@
 //
 // Error setting parameter "%s" for service "%s"!
 //
-#define FCSM_MESSAGE_SET_SETTING_FAILED  0x40000219L
+#define FCSM_MESSAGE_SET_SETTING_FAILED  0x4000021CL
 
 //
 // MessageId: FCSM_MESSAGE_SET_SETTING
@@ -451,7 +478,7 @@
 //
 // Set parameter "%s" for service "%s".
 //
-#define FCSM_MESSAGE_SET_SETTING         0x4000021AL
+#define FCSM_MESSAGE_SET_SETTING         0x4000021DL
 
 //
 // MessageId: FCSM_MESSAGE_RESET_SETTING
@@ -460,7 +487,7 @@
 //
 // Reset parameter "%s" for service "%s" to its default.
 //
-#define FCSM_MESSAGE_RESET_SETTING       0x4000021BL
+#define FCSM_MESSAGE_RESET_SETTING       0x4000021EL
 
 //
 // MessageId: FCSM_MESSAGE_INVALID_EXIT_ACTION
@@ -469,7 +496,7 @@
 //
 // Invalid exit action "%s".  Valid exit actions are:
 //
-#define FCSM_MESSAGE_INVALID_EXIT_ACTION 0x4000021CL
+#define FCSM_MESSAGE_INVALID_EXIT_ACTION 0x4000021FL
 
 //
 // MessageId: FCSM_MESSAGE_INVALID_SERVICE_TYPE
@@ -478,7 +505,7 @@
 //
 // Invalid service type "%s".  Valid types are:
 //
-#define FCSM_MESSAGE_INVALID_SERVICE_TYPE 0x4000021DL
+#define FCSM_MESSAGE_INVALID_SERVICE_TYPE 0x40000220L
 
 //
 // MessageId: FCSM_MESSAGE_SERVICE_CONFIG_DELAYED_AUTO_START_INFO_FAILED
@@ -488,7 +515,7 @@
 // Error configuring delayed startup for service "%s".  The service will start automatically.
 // ChangeServiceConfig2(): %s
 //
-#define FCSM_MESSAGE_SERVICE_CONFIG_DELAYED_AUTO_START_INFO_FAILED 0x4000021EL
+#define FCSM_MESSAGE_SERVICE_CONFIG_DELAYED_AUTO_START_INFO_FAILED 0x40000221L
 
 //
 // MessageId: FCSM_MESSAGE_INVALID_SERVICE_STARTUP
@@ -497,7 +524,7 @@
 //
 // Invalid startup type "%s".  Valid types are:
 //
-#define FCSM_MESSAGE_INVALID_SERVICE_STARTUP 0x4000021FL
+#define FCSM_MESSAGE_INVALID_SERVICE_STARTUP 0x40000222L
 
 //
 // MessageId: FCSM_MESSAGE_INVALID_PRIORITY
@@ -506,7 +533,7 @@
 //
 // Invalid process priority "%s".  Valid priorities are:
 //
-#define FCSM_MESSAGE_INVALID_PRIORITY    0x40000220L
+#define FCSM_MESSAGE_INVALID_PRIORITY    0x40000223L
 
 //
 // MessageId: FCSM_MESSAGE_MISSING_PASSWORD
@@ -515,7 +542,7 @@
 //
 // Setting "%s" requires both a username and password!
 //
-#define FCSM_MESSAGE_MISSING_PASSWORD    0x40000221L
+#define FCSM_MESSAGE_MISSING_PASSWORD    0x40000224L
 
 //
 // MessageId: FCSM_MESSAGE_INTERACTIVE_NOT_LOCALSYSTEM
@@ -525,7 +552,7 @@
 // Service type "%s" is invalid for service "%s".
 // Only services running under the %s account may be interactive.
 //
-#define FCSM_MESSAGE_INTERACTIVE_NOT_LOCALSYSTEM 0x40000222L
+#define FCSM_MESSAGE_INTERACTIVE_NOT_LOCALSYSTEM 0x40000225L
 
 //
 // MessageId: FCSM_MESSAGE_CREATE_PARAMETERS_FAILED
@@ -534,7 +561,7 @@
 //
 // Error setting startup parameters for the service!
 //
-#define FCSM_MESSAGE_CREATE_PARAMETERS_FAILED 0x40000223L
+#define FCSM_MESSAGE_CREATE_PARAMETERS_FAILED 0x40000226L
 
 //
 // MessageId: FCSM_MESSAGE_SERVICE_INSTALLED
@@ -543,7 +570,7 @@
 //
 // Service "%s" installed successfully!
 //
-#define FCSM_MESSAGE_SERVICE_INSTALLED   0x40000224L
+#define FCSM_MESSAGE_SERVICE_INSTALLED   0x40000227L
 
 //
 // MessageId: FCSM_MESSAGE_OPENSERVICE_FAILED
@@ -553,7 +580,7 @@
 // Can't open service!
 // OpenService(): %s
 //
-#define FCSM_MESSAGE_OPENSERVICE_FAILED  0x40000225L
+#define FCSM_MESSAGE_OPENSERVICE_FAILED  0x40000228L
 
 //
 // MessageId: FCSM_MESSAGE_ENUMSERVICESSTATUS_FAILED
@@ -563,7 +590,7 @@
 // Can't open service!
 // EnumServicesStatus(): %s
 //
-#define FCSM_MESSAGE_ENUMSERVICESSTATUS_FAILED 0x40000226L
+#define FCSM_MESSAGE_ENUMSERVICESSTATUS_FAILED 0x40000229L
 
 //
 // MessageId: FCSM_MESSAGE_DELETESERVICE_FAILED
@@ -572,7 +599,7 @@
 //
 // Error deleting service!
 //
-#define FCSM_MESSAGE_DELETESERVICE_FAILED 0x40000227L
+#define FCSM_MESSAGE_DELETESERVICE_FAILED 0x4000022AL
 
 //
 // MessageId: FCSM_MESSAGE_SERVICE_REMOVED
@@ -581,7 +608,7 @@
 //
 // Service "%s" removed successfully!
 //
-#define FCSM_MESSAGE_SERVICE_REMOVED     0x40000228L
+#define FCSM_MESSAGE_SERVICE_REMOVED     0x4000022BL
 
 //
 // MessageId: FCSM_MESSAGE_SERVICE_EDITED
@@ -590,7 +617,7 @@
 //
 // Service "%s" edited successfully!
 //
-#define FCSM_MESSAGE_SERVICE_EDITED      0x40000229L
+#define FCSM_MESSAGE_SERVICE_EDITED      0x4000022CL
 
 //
 // MessageId: FCSM_MESSAGE_CANNOT_RENAME_SERVICE
@@ -599,7 +626,7 @@
 //
 // Services cannot be renamed!
 //
-#define FCSM_MESSAGE_CANNOT_RENAME_SERVICE 0x4000022AL
+#define FCSM_MESSAGE_CANNOT_RENAME_SERVICE 0x4000022DL
 
 //
 // MessageId: FCSM_MESSAGE_EFFECTIVE_AFFINITY_MASK
@@ -611,7 +638,7 @@
 // The requested affinity will be written to the registry as-is.
 // Note, however, that the effective affinity will be %s.
 //
-#define FCSM_MESSAGE_EFFECTIVE_AFFINITY_MASK 0x4000022BL
+#define FCSM_MESSAGE_EFFECTIVE_AFFINITY_MASK 0x4000022EL
 
 //
 // MessageId: FCSM_MESSAGE_BOGUS_AFFINITY_MASK
@@ -622,7 +649,7 @@
 // Valid specifications are of the form "0-2,4-6,10,15"
 // Identifiers must be in the range 0-%d on this system.
 //
-#define FCSM_MESSAGE_BOGUS_AFFINITY_MASK 0x4000022CL
+#define FCSM_MESSAGE_BOGUS_AFFINITY_MASK 0x4000022FL
 
 //
 // MessageId: FCSM_MESSAGE_BAD_CONTROL_RESPONSE
@@ -631,7 +658,7 @@
 //
 // %s: Unexpected status %s in response to %s control.
 //
-#define FCSM_MESSAGE_BAD_CONTROL_RESPONSE 0x4000022DL
+#define FCSM_MESSAGE_BAD_CONTROL_RESPONSE 0x40000230L
 
 //
 // MessageId: FCSM_MESSAGE_LSALOOKUPSIDS_FAILED
@@ -641,7 +668,7 @@
 // Failed to look up the username for SID.
 // LsaLookupSids(): %s
 //
-#define FCSM_MESSAGE_LSALOOKUPSIDS_FAILED 0x4000022EL
+#define FCSM_MESSAGE_LSALOOKUPSIDS_FAILED 0x40000231L
 
 //
 // MessageId: FCSM_MESSAGE_CREATEWELLKNOWNSID_FAILED
@@ -650,7 +677,7 @@
 //
 // Failed to create %s SID!
 //
-#define FCSM_MESSAGE_CREATEWELLKNOWNSID_FAILED 0x4000022FL
+#define FCSM_MESSAGE_CREATEWELLKNOWNSID_FAILED 0x40000232L
 
 //
 // MessageId: FCSM_MESSAGE_INVALID_HOOK_EVENT
@@ -659,7 +686,7 @@
 //
 // Invalid hook event.  Valid hook events are:
 //
-#define FCSM_MESSAGE_INVALID_HOOK_EVENT  0x40000230L
+#define FCSM_MESSAGE_INVALID_HOOK_EVENT  0x40000233L
 
 //
 // MessageId: FCSM_MESSAGE_INVALID_HOOK_ACTION
@@ -668,7 +695,7 @@
 //
 // Invalid hook action for event %s.  Valid hook actions are:
 //
-#define FCSM_MESSAGE_INVALID_HOOK_ACTION 0x40000231L
+#define FCSM_MESSAGE_INVALID_HOOK_ACTION 0x40000234L
 
 //
 // MessageId: FCSM_MESSAGE_INVALID_HOOK_NAME
@@ -677,7 +704,7 @@
 //
 // Invalid hook name.  Names should be specified in the form <event>/<action>.
 //
-#define FCSM_MESSAGE_INVALID_HOOK_NAME   0x40000232L
+#define FCSM_MESSAGE_INVALID_HOOK_NAME   0x40000235L
 
 //
 // MessageId: FCSM_GUI_CREATEDIALOG_FAILED
@@ -687,7 +714,7 @@
 // CreateDialog() failed:
 // %s
 //
-#define FCSM_GUI_CREATEDIALOG_FAILED     0x40000233L
+#define FCSM_GUI_CREATEDIALOG_FAILED     0x40000236L
 
 //
 // MessageId: FCSM_GUI_MISSING_SERVICE_NAME
@@ -696,7 +723,7 @@
 //
 // No valid service name was specified!
 //
-#define FCSM_GUI_MISSING_SERVICE_NAME    0x40000234L
+#define FCSM_GUI_MISSING_SERVICE_NAME    0x40000237L
 
 //
 // MessageId: FCSM_GUI_MISSING_PATH
@@ -705,7 +732,7 @@
 //
 // No valid executable path was specified!
 //
-#define FCSM_GUI_MISSING_PATH            0x40000235L
+#define FCSM_GUI_MISSING_PATH            0x40000238L
 
 //
 // MessageId: FCSM_GUI_INVALID_OPTIONS
@@ -714,7 +741,7 @@
 //
 // No valid arguments were specified!
 //
-#define FCSM_GUI_INVALID_OPTIONS         0x40000236L
+#define FCSM_GUI_INVALID_OPTIONS         0x40000239L
 
 //
 // MessageId: FCSM_GUI_MISSING_USERNAME
@@ -723,7 +750,7 @@
 //
 // Missing account name!
 //
-#define FCSM_GUI_MISSING_USERNAME        0x40000237L
+#define FCSM_GUI_MISSING_USERNAME        0x4000023AL
 
 //
 // MessageId: FCSM_GUI_INVALID_USERNAME
@@ -732,7 +759,7 @@
 //
 // Invalid account name!
 //
-#define FCSM_GUI_INVALID_USERNAME        0x40000238L
+#define FCSM_GUI_INVALID_USERNAME        0x4000023BL
 
 //
 // MessageId: FCSM_GUI_MISSING_PASSWORD
@@ -741,7 +768,7 @@
 //
 // Missing or mismatched password(s)!
 //
-#define FCSM_GUI_MISSING_PASSWORD        0x40000239L
+#define FCSM_GUI_MISSING_PASSWORD        0x4000023CL
 
 //
 // MessageId: FCSM_GUI_INVALID_PASSWORD
@@ -750,7 +777,7 @@
 //
 // Invalid password!
 //
-#define FCSM_GUI_INVALID_PASSWORD        0x4000023AL
+#define FCSM_GUI_INVALID_PASSWORD        0x4000023DL
 
 //
 // MessageId: FCSM_GUI_INVALID_DISPLAYNAME
@@ -759,7 +786,7 @@
 //
 // Invalid displayname!
 //
-#define FCSM_GUI_INVALID_DISPLAYNAME     0x4000023BL
+#define FCSM_GUI_INVALID_DISPLAYNAME     0x4000023EL
 
 //
 // MessageId: FCSM_GUI_INVALID_DESCRIPTION
@@ -768,7 +795,7 @@
 //
 // Invalid description!
 //
-#define FCSM_GUI_INVALID_DESCRIPTION     0x4000023CL
+#define FCSM_GUI_INVALID_DESCRIPTION     0x4000023FL
 
 //
 // MessageId: FCSM_GUI_OUT_OF_MEMORY_FOR_IMAGEPATH
@@ -778,7 +805,7 @@
 // Error constructing ImagePath!\nThis really shouldn't happen.  You could be out of memory
 // or the world may be about to end or something equally bad.
 //
-#define FCSM_GUI_OUT_OF_MEMORY_FOR_IMAGEPATH 0x4000023DL
+#define FCSM_GUI_OUT_OF_MEMORY_FOR_IMAGEPATH 0x40000240L
 
 //
 // MessageId: FCSM_GUI_INVALID_ENVIRONMENT
@@ -787,7 +814,7 @@
 //
 // Environment should comprise strings of the form KEY=VALUE.
 //
-#define FCSM_GUI_INVALID_ENVIRONMENT     0x4000023EL
+#define FCSM_GUI_INVALID_ENVIRONMENT     0x40000241L
 
 //
 // MessageId: FCSM_GUI_INVALID_DEPENDENCIES
@@ -796,7 +823,7 @@
 //
 // Invalid dependencies!
 //
-#define FCSM_GUI_INVALID_DEPENDENCIES    0x4000023FL
+#define FCSM_GUI_INVALID_DEPENDENCIES    0x40000242L
 
 //
 // MessageId: FCSM_GUI_INSTALL_SERVICE_FAILED
@@ -806,7 +833,7 @@
 // Couldn't create service!
 // Perhaps it is already installed...
 //
-#define FCSM_GUI_INSTALL_SERVICE_FAILED  0x40000240L
+#define FCSM_GUI_INSTALL_SERVICE_FAILED  0x40000243L
 
 //
 // MessageId: FCSM_GUI_CREATE_PARAMETERS_FAILED
@@ -816,7 +843,7 @@
 // Couldn't set startup parameters for the service!
 // Deleting the service...
 //
-#define FCSM_GUI_CREATE_PARAMETERS_FAILED 0x40000241L
+#define FCSM_GUI_CREATE_PARAMETERS_FAILED 0x40000244L
 
 //
 // MessageId: FCSM_GUI_EDIT_PARAMETERS_FAILED
@@ -825,7 +852,7 @@
 //
 // Couldn't set startup parameters for the service!
 //
-#define FCSM_GUI_EDIT_PARAMETERS_FAILED  0x40000242L
+#define FCSM_GUI_EDIT_PARAMETERS_FAILED  0x40000245L
 
 //
 // MessageId: FCSM_GUI_ASK_REMOVE_SERVICE
@@ -834,7 +861,7 @@
 //
 // Remove the service?
 //
-#define FCSM_GUI_ASK_REMOVE_SERVICE      0x40000243L
+#define FCSM_GUI_ASK_REMOVE_SERVICE      0x40000246L
 
 //
 // MessageId: FCSM_GUI_SERVICE_NOT_INSTALLED
@@ -844,7 +871,7 @@
 // Can't open service!
 // Perhaps it isn't installed...
 //
-#define FCSM_GUI_SERVICE_NOT_INSTALLED   0x40000244L
+#define FCSM_GUI_SERVICE_NOT_INSTALLED   0x40000247L
 
 //
 // MessageId: FCSM_GUI_REMOVE_SERVICE_FAILED
@@ -855,7 +882,7 @@
 // If this error persists, you may need to set the service NOT to start
 // automatically, reboot your computer and try removing it again.
 //
-#define FCSM_GUI_REMOVE_SERVICE_FAILED   0x40000245L
+#define FCSM_GUI_REMOVE_SERVICE_FAILED   0x40000248L
 
 //
 // MessageId: FCSM_GUI_BROWSE_FILTER_APPLICATIONS
@@ -864,7 +891,7 @@
 //
 // Applications%0
 //
-#define FCSM_GUI_BROWSE_FILTER_APPLICATIONS 0x40000246L
+#define FCSM_GUI_BROWSE_FILTER_APPLICATIONS 0x40000249L
 
 //
 // MessageId: FCSM_GUI_BROWSE_FILTER_DIRECTORIES
@@ -873,7 +900,7 @@
 //
 // Directories%0
 //
-#define FCSM_GUI_BROWSE_FILTER_DIRECTORIES 0x40000247L
+#define FCSM_GUI_BROWSE_FILTER_DIRECTORIES 0x4000024AL
 
 //
 // MessageId: FCSM_GUI_BROWSE_FILTER_ALL_FILES
@@ -882,7 +909,7 @@
 //
 // All files%0
 //
-#define FCSM_GUI_BROWSE_FILTER_ALL_FILES 0x40000248L
+#define FCSM_GUI_BROWSE_FILTER_ALL_FILES 0x4000024BL
 
 //
 // MessageId: FCSM_GUI_BROWSE_TITLE
@@ -891,7 +918,7 @@
 //
 // Locate application file
 //
-#define FCSM_GUI_BROWSE_TITLE            0x40000249L
+#define FCSM_GUI_BROWSE_TITLE            0x4000024CL
 
 //
 // MessageId: FCSM_GUI_TAB_APPLICATION
@@ -900,7 +927,7 @@
 //
 // Application%0
 //
-#define FCSM_GUI_TAB_APPLICATION         0x4000024AL
+#define FCSM_GUI_TAB_APPLICATION         0x4000024DL
 
 //
 // MessageId: FCSM_GUI_TAB_NATIVE
@@ -909,7 +936,7 @@
 //
 // Service%0
 //
-#define FCSM_GUI_TAB_NATIVE              0x4000024BL
+#define FCSM_GUI_TAB_NATIVE              0x4000024EL
 
 //
 // MessageId: FCSM_GUI_TAB_DETAILS
@@ -918,7 +945,7 @@
 //
 // Details%0
 //
-#define FCSM_GUI_TAB_DETAILS             0x4000024CL
+#define FCSM_GUI_TAB_DETAILS             0x4000024FL
 
 //
 // MessageId: FCSM_GUI_TAB_LOGON
@@ -927,7 +954,7 @@
 //
 // Log on%0
 //
-#define FCSM_GUI_TAB_LOGON               0x4000024DL
+#define FCSM_GUI_TAB_LOGON               0x40000250L
 
 //
 // MessageId: FCSM_GUI_TAB_DEPENDENCIES
@@ -936,7 +963,7 @@
 //
 // Dependencies%0
 //
-#define FCSM_GUI_TAB_DEPENDENCIES        0x4000024EL
+#define FCSM_GUI_TAB_DEPENDENCIES        0x40000251L
 
 //
 // MessageId: FCSM_GUI_TAB_PROCESS
@@ -945,7 +972,7 @@
 //
 // Process%0
 //
-#define FCSM_GUI_TAB_PROCESS             0x4000024FL
+#define FCSM_GUI_TAB_PROCESS             0x40000252L
 
 //
 // MessageId: FCSM_GUI_TAB_SHUTDOWN
@@ -954,7 +981,7 @@
 //
 // Shutdown%0
 //
-#define FCSM_GUI_TAB_SHUTDOWN            0x40000250L
+#define FCSM_GUI_TAB_SHUTDOWN            0x40000253L
 
 //
 // MessageId: FCSM_GUI_TAB_EXIT
@@ -963,7 +990,7 @@
 //
 // Exit actions%0
 //
-#define FCSM_GUI_TAB_EXIT                0x40000251L
+#define FCSM_GUI_TAB_EXIT                0x40000254L
 
 //
 // MessageId: FCSM_GUI_TAB_IO
@@ -972,7 +999,7 @@
 //
 // I/O%0
 //
-#define FCSM_GUI_TAB_IO                  0x40000252L
+#define FCSM_GUI_TAB_IO                  0x40000255L
 
 //
 // MessageId: FCSM_GUI_TAB_ROTATION
@@ -981,7 +1008,7 @@
 //
 // File rotation%0
 //
-#define FCSM_GUI_TAB_ROTATION            0x40000253L
+#define FCSM_GUI_TAB_ROTATION            0x40000256L
 
 //
 // MessageId: FCSM_GUI_TAB_ENVIRONMENT
@@ -990,7 +1017,7 @@
 //
 // Environment%0
 //
-#define FCSM_GUI_TAB_ENVIRONMENT         0x40000254L
+#define FCSM_GUI_TAB_ENVIRONMENT         0x40000257L
 
 //
 // MessageId: FCSM_GUI_TAB_HOOKS
@@ -999,7 +1026,7 @@
 //
 // Hooks%0
 //
-#define FCSM_GUI_TAB_HOOKS               0x40000255L
+#define FCSM_GUI_TAB_HOOKS               0x40000258L
 
 //
 // MessageId: FCSM_GUI_STARTUP_AUTOMATIC
@@ -1008,7 +1035,7 @@
 //
 // Automatic%0
 //
-#define FCSM_GUI_STARTUP_AUTOMATIC       0x40000256L
+#define FCSM_GUI_STARTUP_AUTOMATIC       0x40000259L
 
 //
 // MessageId: FCSM_GUI_STARTUP_DELAYED
@@ -1017,7 +1044,7 @@
 //
 // Automatic (Delayed Start)%0
 //
-#define FCSM_GUI_STARTUP_DELAYED         0x40000257L
+#define FCSM_GUI_STARTUP_DELAYED         0x4000025AL
 
 //
 // MessageId: FCSM_GUI_STARTUP_MANUAL
@@ -1026,7 +1053,7 @@
 //
 // Manual%0
 //
-#define FCSM_GUI_STARTUP_MANUAL          0x40000258L
+#define FCSM_GUI_STARTUP_MANUAL          0x4000025BL
 
 //
 // MessageId: FCSM_GUI_STARTUP_DISABLED
@@ -1035,7 +1062,7 @@
 //
 // Disabled%0
 //
-#define FCSM_GUI_STARTUP_DISABLED        0x40000259L
+#define FCSM_GUI_STARTUP_DISABLED        0x4000025CL
 
 //
 // MessageId: FCSM_GUI_EXIT_RESTART
@@ -1044,7 +1071,7 @@
 //
 // Restart application%0
 //
-#define FCSM_GUI_EXIT_RESTART            0x4000025AL
+#define FCSM_GUI_EXIT_RESTART            0x4000025DL
 
 //
 // MessageId: FCSM_GUI_EXIT_IGNORE
@@ -1053,7 +1080,7 @@
 //
 // No action (srvany compatible)%0
 //
-#define FCSM_GUI_EXIT_IGNORE             0x4000025BL
+#define FCSM_GUI_EXIT_IGNORE             0x4000025EL
 
 //
 // MessageId: FCSM_GUI_EXIT_REALLY
@@ -1062,7 +1089,7 @@
 //
 // Stop service (oneshot mode)%0
 //
-#define FCSM_GUI_EXIT_REALLY             0x4000025CL
+#define FCSM_GUI_EXIT_REALLY             0x4000025FL
 
 //
 // MessageId: FCSM_GUI_EXIT_UNCLEAN
@@ -1071,7 +1098,7 @@
 //
 // Fake crash (pre-Vista)%0
 //
-#define FCSM_GUI_EXIT_UNCLEAN            0x4000025DL
+#define FCSM_GUI_EXIT_UNCLEAN            0x40000260L
 
 //
 // MessageId: FCSM_GUI_REALTIME_PRIORITY_CLASS
@@ -1080,7 +1107,7 @@
 //
 // Realtime%0
 //
-#define FCSM_GUI_REALTIME_PRIORITY_CLASS 0x4000025EL
+#define FCSM_GUI_REALTIME_PRIORITY_CLASS 0x40000261L
 
 //
 // MessageId: FCSM_GUI_HIGH_PRIORITY_CLASS
@@ -1089,7 +1116,7 @@
 //
 // High%0
 //
-#define FCSM_GUI_HIGH_PRIORITY_CLASS     0x4000025FL
+#define FCSM_GUI_HIGH_PRIORITY_CLASS     0x40000262L
 
 //
 // MessageId: FCSM_GUI_ABOVE_NORMAL_PRIORITY_CLASS
@@ -1098,7 +1125,7 @@
 //
 // Above normal%0
 //
-#define FCSM_GUI_ABOVE_NORMAL_PRIORITY_CLASS 0x40000260L
+#define FCSM_GUI_ABOVE_NORMAL_PRIORITY_CLASS 0x40000263L
 
 //
 // MessageId: FCSM_GUI_NORMAL_PRIORITY_CLASS
@@ -1107,7 +1134,7 @@
 //
 // Normal%0
 //
-#define FCSM_GUI_NORMAL_PRIORITY_CLASS   0x40000261L
+#define FCSM_GUI_NORMAL_PRIORITY_CLASS   0x40000264L
 
 //
 // MessageId: FCSM_GUI_BELOW_NORMAL_PRIORITY_CLASS
@@ -1116,7 +1143,7 @@
 //
 // Below normal%0
 //
-#define FCSM_GUI_BELOW_NORMAL_PRIORITY_CLASS 0x40000262L
+#define FCSM_GUI_BELOW_NORMAL_PRIORITY_CLASS 0x40000265L
 
 //
 // MessageId: FCSM_GUI_IDLE_PRIORITY_CLASS
@@ -1125,7 +1152,7 @@
 //
 // Low%0
 //
-#define FCSM_GUI_IDLE_PRIORITY_CLASS     0x40000263L
+#define FCSM_GUI_IDLE_PRIORITY_CLASS     0x40000266L
 
 //
 // MessageId: FCSM_GUI_WARN_AFFINITY
@@ -1136,7 +1163,7 @@
 // specifies more CPUs than are present on this system.  Editing the
 // service will result in additional CPUs being removed.
 //
-#define FCSM_GUI_WARN_AFFINITY           0x40000264L
+#define FCSM_GUI_WARN_AFFINITY           0x40000267L
 
 //
 // MessageId: FCSM_GUI_WARN_AFFINITY_NONE
@@ -1145,7 +1172,7 @@
 //
 // No CPUs selected!
 //
-#define FCSM_GUI_WARN_AFFINITY_NONE      0x40000265L
+#define FCSM_GUI_WARN_AFFINITY_NONE      0x40000268L
 
 //
 // MessageId: FCSM_GUI_WARN_STDIO
@@ -1156,7 +1183,7 @@
 // represented by this GUI's simplified set of options.  Check the registry
 // after editing the service to confirm its I/O redirection settings.
 //
-#define FCSM_GUI_WARN_STDIO              0x40000266L
+#define FCSM_GUI_WARN_STDIO              0x40000269L
 
 //
 // MessageId: FCSM_GUI_WARN_ROTATE_BYTES
@@ -1167,7 +1194,7 @@
 // rotation.  This GUI can only display 32-bit settings.  Check the registry
 // after editing the service to confirm its file rotation settings.
 //
-#define FCSM_GUI_WARN_ROTATE_BYTES       0x40000267L
+#define FCSM_GUI_WARN_ROTATE_BYTES       0x4000026AL
 
 //
 // MessageId: FCSM_GUI_WARN_ENVIRONMENT
@@ -1179,7 +1206,7 @@
 // can only display one such block.  Editing the service will result in
 // one of the environment blocks being deleted.
 //
-#define FCSM_GUI_WARN_ENVIRONMENT        0x40000268L
+#define FCSM_GUI_WARN_ENVIRONMENT        0x4000026BL
 
 //
 // MessageId: FCSM_GUI_AFFINITY_CPU
@@ -1188,7 +1215,7 @@
 //
 // CPU%0
 //
-#define FCSM_GUI_AFFINITY_CPU            0x40000269L
+#define FCSM_GUI_AFFINITY_CPU            0x4000026CL
 
 //
 // MessageId: FCSM_GUI_HOOK_EVENT_START
@@ -1197,7 +1224,7 @@
 //
 // Application start%0
 //
-#define FCSM_GUI_HOOK_EVENT_START        0x4000026AL
+#define FCSM_GUI_HOOK_EVENT_START        0x4000026DL
 
 //
 // MessageId: FCSM_GUI_HOOK_EVENT_STOP
@@ -1206,7 +1233,7 @@
 //
 // Service stop%0
 //
-#define FCSM_GUI_HOOK_EVENT_STOP         0x4000026BL
+#define FCSM_GUI_HOOK_EVENT_STOP         0x4000026EL
 
 //
 // MessageId: FCSM_GUI_HOOK_EVENT_EXIT
@@ -1215,7 +1242,7 @@
 //
 // Application exit%0
 //
-#define FCSM_GUI_HOOK_EVENT_EXIT         0x4000026CL
+#define FCSM_GUI_HOOK_EVENT_EXIT         0x4000026FL
 
 //
 // MessageId: FCSM_GUI_HOOK_EVENT_POWER
@@ -1224,7 +1251,7 @@
 //
 // Power event%0
 //
-#define FCSM_GUI_HOOK_EVENT_POWER        0x4000026DL
+#define FCSM_GUI_HOOK_EVENT_POWER        0x40000270L
 
 //
 // MessageId: FCSM_GUI_HOOK_EVENT_ROTATE
@@ -1233,7 +1260,7 @@
 //
 // Log rotation%0
 //
-#define FCSM_GUI_HOOK_EVENT_ROTATE       0x4000026EL
+#define FCSM_GUI_HOOK_EVENT_ROTATE       0x40000271L
 
 //
 // MessageId: FCSM_GUI_HOOK_ACTION_START_PRE
@@ -1242,7 +1269,7 @@
 //
 // Before starting application%0
 //
-#define FCSM_GUI_HOOK_ACTION_START_PRE   0x4000026FL
+#define FCSM_GUI_HOOK_ACTION_START_PRE   0x40000272L
 
 //
 // MessageId: FCSM_GUI_HOOK_ACTION_START_POST
@@ -1251,7 +1278,7 @@
 //
 // Successful application startup%0
 //
-#define FCSM_GUI_HOOK_ACTION_START_POST  0x40000270L
+#define FCSM_GUI_HOOK_ACTION_START_POST  0x40000273L
 
 //
 // MessageId: FCSM_GUI_HOOK_ACTION_STOP_PRE
@@ -1260,7 +1287,7 @@
 //
 // Before shutting down application%0
 //
-#define FCSM_GUI_HOOK_ACTION_STOP_PRE    0x40000271L
+#define FCSM_GUI_HOOK_ACTION_STOP_PRE    0x40000274L
 
 //
 // MessageId: FCSM_GUI_HOOK_ACTION_EXIT_POST
@@ -1269,7 +1296,7 @@
 //
 // After application exits%0
 //
-#define FCSM_GUI_HOOK_ACTION_EXIT_POST   0x40000272L
+#define FCSM_GUI_HOOK_ACTION_EXIT_POST   0x40000275L
 
 //
 // MessageId: FCSM_GUI_HOOK_ACTION_POWER_CHANGE
@@ -1278,7 +1305,7 @@
 //
 // Power setting change%0
 //
-#define FCSM_GUI_HOOK_ACTION_POWER_CHANGE 0x40000273L
+#define FCSM_GUI_HOOK_ACTION_POWER_CHANGE 0x40000276L
 
 //
 // MessageId: FCSM_GUI_HOOK_ACTION_POWER_RESUME
@@ -1287,7 +1314,7 @@
 //
 // Resume from standby%0
 //
-#define FCSM_GUI_HOOK_ACTION_POWER_RESUME 0x40000274L
+#define FCSM_GUI_HOOK_ACTION_POWER_RESUME 0x40000277L
 
 //
 // MessageId: FCSM_GUI_HOOK_ACTION_ROTATE_PRE
@@ -1296,7 +1323,7 @@
 //
 // Before online log rotation%0
 //
-#define FCSM_GUI_HOOK_ACTION_ROTATE_PRE  0x40000275L
+#define FCSM_GUI_HOOK_ACTION_ROTATE_PRE  0x40000278L
 
 //
 // MessageId: FCSM_GUI_HOOK_ACTION_ROTATE_POST
@@ -1305,7 +1332,7 @@
 //
 // After online log rotation%0
 //
-#define FCSM_GUI_HOOK_ACTION_ROTATE_POST 0x40000276L
+#define FCSM_GUI_HOOK_ACTION_ROTATE_POST 0x40000279L
 
 //
 // MessageId: FCSM_EVENT_DISPATCHER_FAILED

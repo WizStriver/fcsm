@@ -62,6 +62,11 @@ int main(int argc, TCHAR** argv)
             if(str_equiv(argv[2], _T("template"))) fcsm_exit(create_service_conf_template(argv + 2));
             else fcsm_exit(pre_install_conf_service(argv + 2));
         }
+        if (argc > 2 && str_equiv(argv[1], _T("-t"))) {
+            if (!is_admin) fcsm_exit(elevate(argc, argv, FCSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_INSTALL));
+            create_messages();
+            fcsm_exit(parse_conf_syntax(argv[2]));
+        }
         if (str_equiv(argv[1], _T("edit")) || str_equiv(argv[1], _T("get")) || str_equiv(argv[1], _T("set")) || str_equiv(argv[1], _T("reset")) || str_equiv(argv[1], _T("unset")) || str_equiv(argv[1], _T("dump"))) {
             int ret = pre_edit_service(argc - 1, argv + 1);
             if (ret == 3 && !is_admin && argc == 3) fcsm_exit(elevate(argc, argv, FCSM_MESSAGE_NOT_ADMINISTRATOR_CANNOT_EDIT));
