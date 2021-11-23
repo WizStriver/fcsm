@@ -13,14 +13,12 @@ Json::Value parse_conf(const TCHAR* conf, int& ret)
     }
     const Json::Value services = root["services"];
     if (services.type() == Json::nullValue) {
-        cout << "services key is required in json.";
-        //print_message(stderr, SERVICES_KEY_IS_REQUIRED_IN_CONF);
+        print_message(stderr, SERVICES_KEY_IS_REQUIRED_IN_CONF);
         ret = 1;
         return Json::nullValue;
     }
     if (!services.size()) {
-        cout << "services is empty!";
-        //print_message(stderr, SERVICES_KEY_IS_EMPTY_IN_CONF);
+        print_message(stderr, SERVICES_KEY_IS_EMPTY_IN_CONF);
         ret = 1;
         return Json::nullValue;
     }

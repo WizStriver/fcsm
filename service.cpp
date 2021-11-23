@@ -942,7 +942,7 @@ int pre_install_conf_service(TCHAR ** argv) {
 	}
 
 	if (!c) {
-		//print_message(stderr, FCSM_CONF_SERVICE_INSTALL_FAILED);
+		print_message(stderr, FCSM_CONF_SERVICE_INSTALL_FAILED);
 		return 1;
 	}
 
