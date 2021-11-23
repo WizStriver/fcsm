@@ -939,6 +939,7 @@ int pre_install_conf_service(TCHAR* conf) {
 
 		int ret = install_service(service, editing);
 		cleanup_fcsm_service(service);
+		if(ret == 0) c++;
 	}
 
 	if (!c) {
