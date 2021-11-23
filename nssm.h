@@ -52,11 +52,13 @@
 #include <iostream>
 #include <shellapi.h>
 #pragma comment(lib,"Shell32.lib")
+#include <string>
 
 #include "utf8.h"
 #include "service.h"
 #include "account.h"
 #include "console.h"
+#include "conf.h"
 #include "env.h"
 #include "event.h"
 #include "hook.h"

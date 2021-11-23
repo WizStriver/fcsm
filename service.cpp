@@ -911,6 +911,45 @@ int pre_install_multiple_service(int argc, TCHAR** argv) {
 	return 0;
 }
 
+/* About to install service with config file */
+int pre_install_conf_service(TCHAR ** argv) {
+	int ret = 0;
+	const Json::Value services = parse_conf(argv[0], ret);
+	if (ret != 0) return ret;
+	ConfService* conf_s_list = new ConfService[services.size()];
+	get_conf_service_list(conf_s_list, services);
+
+	int c = 0;
+	for (int i = 0; i < services.size(); i++) {
+		ConfService conf_s = conf_s_list[i];
+		fcsm_service_t* service = alloc_fcsm_service();
+		set_fcsm_service_defaults(service);
+		copy(conf_s.name.begin(),conf_s.name.end(), service->name);
+
+		if (!service) {
+			print_message(stderr, FCSM_MESSAGE_OUT_OF_MEMORY, _T("service"), _T("pre_install_conf_service()"));
+		}
+		copy(conf_s.exe.begin(),conf_s.exe.end(), service->exe);
+		if(conf_s.flags.size()) copy(conf_s.flags.begin(),conf_s.flags.end(), service->flags);
+		if (conf_s.description.size()) copy(conf_s.description.begin(),conf_s.description.end(), service->description);
+		/* Work out directory name */
+		copy(conf_s.exe.begin(),conf_s.exe.end(), service->dir);
+		strip_basename(service->dir);
+		bool editing = conf_s.description.size() ? true : false;
+
+		int ret = install_service(service, editing);
+		cleanup_fcsm_service(service);
+	}
+
+	if (!c) {
+		//print_message(stderr, FCSM_CONF_SERVICE_INSTALL_FAILED);
+		return 1;
+	}
+
+	delete[] conf_s_list;
+	return 0;
+}
+
 /* About to edit the service. */
 int pre_edit_service(int argc, TCHAR** argv) {
 	/* Require service name. */
@@ -1240,7 +1279,7 @@ int pre_remove_service(int argc, TCHAR** argv) {
 }
 
 /* Install the service */
-int install_service(fcsm_service_t* service) {
+int install_service(fcsm_service_t* service, bool editing) {
 	if (!service) return 1;
 
 	/* Open service manager */
@@ -1262,7 +1301,7 @@ int install_service(fcsm_service_t* service) {
 		return 5;
 	}
 
-	if (edit_service(service, false)) {
+	if (edit_service(service, editing)) {
 		DeleteService(service->handle);
 		CloseServiceHandle(services);
 		return 6;
