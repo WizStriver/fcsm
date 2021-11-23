@@ -950,6 +950,14 @@ int pre_install_conf_service(TCHAR ** argv) {
 	return 0;
 }
 
+int create_service_conf_template(TCHAR ** argv) {
+	TCHAR *format = message_string(FCSM_SERVICE_CONF_TEMPLATE);
+	if (! format) return 1;
+	log_message(FCSM_CONF_TEMPLATE_OFSTREAM, format);
+	LocalFree(format);
+	return 0;
+}
+
 /* About to edit the service. */
 int pre_edit_service(int argc, TCHAR** argv) {
 	/* Require service name. */

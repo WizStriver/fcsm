@@ -11,5 +11,6 @@ void log_argv(int, TCHAR**);
 
 #define FCSM_LOG_FILE _T("fcsm.main.log")
 #define FCSM_DEFAULT_OFSTREAM ofstream(FCSM_LOG_FILE, ios_base::app)
+#define FCSM_CONF_TEMPLATE_OFSTREAM ofstream(_T("fcsm.cnf"), ios_base::out)
 
 #endif
