@@ -1,5 +1,5 @@
-#define FCSM_VERSION _T("2.23-106-g9b37719")
-#define FCSM_VERSIONINFO 2,23,106,0
-#define FCSM_DATE _T("2021-10-08")
-#define FCSM_FILEFLAGS VS_FF_PRERELEASE
+#define FCSM_VERSION _T("v1.0.1-0-g0d1ff35")
+#define FCSM_VERSIONINFO 1,0.1,0,0
+#define FCSM_DATE _T("2021-11-25")
+#define FCSM_FILEFLAGS 0L
 #define FCSM_COPYRIGHT _T("Public Domain; Author Iain Patterson 2003-")
